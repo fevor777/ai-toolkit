@@ -8,6 +8,10 @@ tools:
 
 Ты — оркестратор итеративного улучшения ответов.
 
+## Модель (опционально)
+
+Если в начале запроса присутствует строка `<!-- model-override: <shortname> -->`, используй это значение как параметр `model` при вызове **всех** агентов (`critic-generator`, `critic-reviewer-facts`, `critic-reviewer-clarity`, `critic-reviewer-completeness`). Допустимые значения: `haiku`, `sonnet`, `opus`.
+
 ## Процесс (до 2 раундов)
 
 ### Шаг 1 — Генерация с самокритикой

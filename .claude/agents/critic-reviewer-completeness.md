@@ -1,7 +1,7 @@
 ---
 name: critic-reviewer-completeness
 description: Reviews a draft answer specifically for completeness and coverage of important aspects. Returns structured score output.
-model: claude-opus-4-7
+model: claude-sonnet-4-6
 tools:
   - read
   - web_search

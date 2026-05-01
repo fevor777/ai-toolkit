@@ -1,7 +1,7 @@
 ---
 name: critic-reviewer-facts
 description: Reviews a draft answer specifically for factual accuracy, errors, and unsupported claims. Returns structured score output.
-model: claude-opus-4-7
+model: claude-sonnet-4-6
 tools:
   - read
   - web_search
