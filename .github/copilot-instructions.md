@@ -22,6 +22,8 @@ These instructions apply to all GitHub Copilot requests in this repository.
 - If a requested change depends on an absent toolchain or missing files, prefer the smallest viable implementation and note the gap.
 
 ## Responses
+- Before answering, think through this problem carefully.
+  Consider the different factors involved, potential constraints, and various approaches before recommending the best solution.
 - Keep responses minimal.
 - For implementation tasks, return only the files changed and a brief final result unless more detail is requested.
 - Do not explain GitHub Copilot mechanics, tool usage, or internal workflow unless explicitly asked.
