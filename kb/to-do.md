@@ -18,3 +18,5 @@
    * попробовать получить доступ к Teams, Outlook через MCP 
    * попробовать создавать план агентами, перед действиями и проверять этот план другими агентами
  - использовать docker для запуска агентов в auto mode в Github Copilot
+ - узнать можно ли запускать copilot cli на git commit or push для ревью
+ - внедрить hooks в кор (обновлять инструкции и readme после изменений файлов? похожие компоненты перед созданием новых? Duplication Prevention Hook, enhance prompt on UserPromptSubmit, )
