@@ -1,0 +1,5 @@
+{
+  "skillOverrides": {
+    "critic": "user-invocable-only"
+  }
+}

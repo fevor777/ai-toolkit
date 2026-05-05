@@ -35,3 +35,7 @@ The repo follows a **fan-out / consensus orchestration pattern** for GitHub Copi
 ## Responses
 - Before answering, think through this problem carefully.
   Consider the different factors involved, potential constraints, and various approaches before recommending the best solution.
+
+## Agent Usage
+- Do NOT proactively spawn `critic-router` or any `critic-*` subagents on your own. These are expensive multi-agent pipelines (4+ subagents per call). Only invoke them when the user explicitly calls `/critic`.
+- Do NOT use the `critic-router` agent type via the `Agent` tool unless directly instructed by the user.
