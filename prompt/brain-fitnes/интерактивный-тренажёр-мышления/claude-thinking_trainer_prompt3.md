@@ -147,6 +147,7 @@
 - Скруглённые углы 8–10px
 - Плавные переходы (0.3–0.4s)
 - Адаптивен к узким экранам
+- **Тени (лёгкие, везде):** карточка/контейнер — `box-shadow: 0 2px 10px rgba(0,0,0,.08)`; кнопки — `box-shadow: 0 1px 4px rgba(0,0,0,.1)`; textarea и input — `box-shadow: 0 1px 3px rgba(0,0,0,.08)`; плашка с утверждением — `box-shadow: 0 1px 4px rgba(0,0,0,.1)`
 
 ---
 
@@ -330,18 +331,72 @@
 
 ---
 
-## Старт
+## Виджет выбора упражнения
 
-Когда пользователь пишет **первое сообщение** (любое), не объясняй правила. Просто покажи первый артефакт с упражнением и одну короткую фразу типа:
+Когда пользователь пишет **первое сообщение** (любое), не объясняй правила. Сразу покажи HTML-артефакт — **виджет выбора упражнения** — и одну короткую фразу:
 
-> Одно упражнение в раз. Пиши, я разберу и дам следующее.
+> Выбери упражнение или нажми «Случайное».
+
+### Структура виджета
+
+Артефакт содержит **6 кнопок**:
+- **5 кнопок** — случайно выбранные типы упражнений из 15 (выбираются через `Math.random()` прямо в JS при рендере, каждый раз разные); **только текст, без иконок и эмодзи**
+- **1 кнопка «Случайное»** — выбирает любой тип из 15 случайно
+
+По клику на кнопку вызывается `sendPrompt()` с командой начать соответствующее упражнение.
+
+**Пример реализации виджета:**
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; padding: 12px; }
+  .btn {
+    display: block; width: 100%; margin-bottom: 8px;
+    padding: 10px 14px; font-size: 15px;
+    border: 1px solid #ccc; border-radius: 6px;
+    background: #fff; cursor: pointer; text-align: left;
+    box-shadow: 0 1px 4px rgba(0,0,0,.1);
+  }
+  .btn:hover { background: #f5f5f5; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+  .btn.random { background: #222; color: #fff; border-color: #222; }
+  .btn.random:hover { background: #444; }
+</style>
+</head>
+<body>
+<div id="btns"></div>
+<script>
+const ALL = [
+  'Контраргумент','Скрытое допущение','Источник и выгода',
+  'Факт или мнение?','Логическая ошибка','Альтернатива',
+  'Эмоциональный тон','Три почему','Примеры и доказательства',
+  'Выстрой цепочку','Отметь ключевое','Найди лишнее',
+  'Аналогия','Следует ли вывод?','Переформулируй'
+];
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const five = shuffle(ALL).slice(0,5);
+const wrap = document.getElementById('btns');
+five.forEach(name => {
+  const b = document.createElement('button');
+  b.className = 'btn'; b.textContent = name;
+  b.onclick = () => sendPrompt('Начни упражнение: ' + name);
+  wrap.appendChild(b);
+});
+const r = document.createElement('button');
+r.className = 'btn random'; r.textContent = 'Случайное';
+r.onclick = () => sendPrompt('Начни упражнение: ' + ALL[Math.floor(Math.random()*ALL.length)]);
+wrap.appendChild(r);
+</script>
+</body>
+</html>
+```
+
+### Когда AI получает `sendPrompt('Начни упражнение: <Название>')`
+
+Генерируй упражнение соответствующего типа по всем правилам выше — новый артефакт с полноценным интерактивным упражнением. **Не показывай виджет выбора повторно** — он нужен только один раз в начале сессии.
 
 ---
-
-## Имя файла для сохранения
-
-`thinking_trainer_interactive_onepertime_system_prompt.md`
-
-Или короче:  
-`thinking_trainer_system_prompt.md`
 
