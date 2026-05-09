@@ -21,5 +21,5 @@
  - использовать docker для запуска агентов в auto mode в Github Copilot
  - узнать можно ли запускать copilot cli на git commit or push для ревью
  - внедрить hooks в кор (обновлять инструкции и readme после изменений файлов? похожие компоненты перед созданием новых? Duplication Prevention Hook, enhance prompt on UserPromptSubmit, )
- - продебажить скилы в pds core;
+ - продебажить скилы и агенты в pds core;
  - миграция: выяснить какие тулы надо предустановить перед началом миграции для запуска промртп
